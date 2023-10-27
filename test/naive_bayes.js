@@ -116,7 +116,7 @@ describe('bayes .learn() correctness', function () {
     await classifier.learn('I dont really know what to make of this.', 'neutral')
 
     //now test it to see that it correctly categorizes a new document
-    assert.equal(await classifier.categorize('awesome, cool, amazing!! Yay.'), 'positive')
+    assert.equal((await classifier.categorize('awesome, cool, amazing!! Yay.')).category, 'positive')
   })
 
   //topic analysis test
@@ -148,7 +148,7 @@ describe('bayes .learn() correctness', function () {
     assert.equal(japaneseFrequencyCount['Chinese'], 1)
 
     //now test it to see that it correctly categorizes a new document
-    assert.equal(await classifier.categorize('Chinese Chinese Chinese Tokyo Japan'), 'chinese')
+    assert.equal((await classifier.categorize('Chinese Chinese Chinese Tokyo Japan')).category, 'chinese')
   })
 
   it('correctly tokenizes cyrlic characters', async function () {
